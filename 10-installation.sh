@@ -8,4 +8,4 @@ then
     echo "Please run this script with root previliges"
 fi
 
-dnf instal git -y
+dnf install git -y
