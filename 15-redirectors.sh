@@ -35,7 +35,7 @@ usage(){
     exit 1
 }
 
-
+echo "Script started executing at: $(date)" &>>$Logfile
 root_check
 
 if [ $# -eq 0 ]
