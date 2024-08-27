@@ -15,7 +15,7 @@ Y="\e[33m"
 root_check(){
     if [ $userid -ne 0 ]
     then
-        echo -e "$R Please run the script with root privileges $N" &>>$Logfile
+        echo -e "$R Please run the script with root privileges $N" | tee -a &>>$Logfile
         exit 1
     fi
 }
@@ -23,19 +23,19 @@ root_check(){
 validate(){
     if [ $1 -ne 0 ]
     then
-        echo -e "$2 is $R FAILED $N" &>>$Logfile
+        echo -e "$2 is $R FAILED $N" | tee -a &>>$Logfile
         exit 1
     else
-        echo -e "$2 is $G SUCCESS $N" &>>$Logfile
+        echo -e "$2 is $G SUCCESS $N" | tee -a &>>$Logfile
     fi
 }
 
 usage(){
-    echo -e "$R USAGE:: $N sudo sh 15-redirectors.sh package1 package2 ..."
+    echo -e "$R USAGE:: $N sudo sh 15-redirectors.sh package1 package2 ..." | tee -a &>>$Logfile
     exit 1
 }
 
-echo "Script started executing at: $(date)" &>>$Logfile
+echo "Script started executing at: $(date)" | tee -a &>>$Logfile
 root_check
 
 if [ $# -eq 0 ]
@@ -48,10 +48,10 @@ do
     dnf list installed $package &>>$Logfile
     if [ $? -ne 0 ]
     then
-        echo "$package is not installed, going to install it.." &>>$Logfile
+        echo "$package is not installed, going to install it.." | tee -a &>>$Logfile
         dnf install $package -y &>>$Logfile
         validate $? "Installing $package" &>>$Logfile
     else
-        echo -e "$package is already $Y installed...nothing to do $N" &>>$Logfile
+        echo -e "$package is already $Y installed...nothing to do $N" | tee -a &>>$Logfile
     fi
 done
