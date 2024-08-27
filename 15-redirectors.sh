@@ -30,7 +30,18 @@ validate(){
     fi
 }
 
+usage(){
+    echo "$R USAGE:: $N sudo sh 15-redirectors.sh package1 package2 ...
+    exit 1
+}
+
+
 root_check
+
+if [ $# -eq 0 ]
+then
+    usage
+fi
 
 for package in $@ #$@ refers to all arguments passed to it
 do
