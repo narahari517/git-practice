@@ -16,7 +16,7 @@ USAGE(){
 
 #check the source and destination are provided
 
-if [ $# lt 2 ]
+if [ $# -lt 2 ]
 then
     USAGE
 fi
