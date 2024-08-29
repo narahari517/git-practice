@@ -14,7 +14,7 @@ else
     exit 1
 fi
 
-FILES=$(find $Source_directory -names "*.log" -mtime +14)
+FILES=$(find $Source_directory -name "*.log" -mtime +14)
 echo "Files=$FILES"
 
 while IFS= read -r line
